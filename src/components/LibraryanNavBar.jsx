@@ -1,14 +1,15 @@
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom/dist";
 import { useEffect } from "react";
 
 function LibraryanNavBar() {
   const [open, setOpen] = useState(false);
-  useEffect(() => {
-    console.log("rendered");
-  }, []);
+  const navigate = useNavigate();
+  // useEffect(() => {
+  //   console.log("rendered");
+  // }, []);
 
   return (
     <>
@@ -17,29 +18,56 @@ function LibraryanNavBar() {
           <h2 className="text-white text-3xl font-bold">Librayan</h2>
           <ul className="hidden md:flex text-white gap-7 font-bold text-lg cursor-pointer">
             <li className="hover:scale-105 transition-all text-gray-300">
+              <Link to="/libraryan">Dashboard</Link>
+            </li>
+            <li className="hover:scale-105 transition-all text-gray-300">
               <Link to="/libraryan/add-book">Add Book</Link>
             </li>
             <li className="hover:scale-105 transition-all text-gray-300">
               <Link to="/libraryan/borrowed-books"> Borrowed Books</Link>
             </li>
           </ul>
+
           <div onClick={() => setOpen(!open)} className="md:hidden">
             {open ? (
-              <>
-                <FaTimes color={"#ffffff"} size="25px" />
-                <div className="absolute bg-white  top-10 right-5 z-10  text-center rounded-lg shadow-lg  ">
-                  <h3 className="text-slate-900 font-bold py-5 px-5 ">
-                    <Link to="/libraryan/add-book">Add Book</Link>
-                  </h3>
-                  <h3 className=" text-slate-900 font-bold py-5 px-5 border-t-2">
-                    <Link to="/libraryan/borrowed-books"> Borrowed Books</Link>
-                  </h3>
-                </div>
-              </>
+              <FaTimes color={"#ffffff"} size="25px" />
             ) : (
               <FaBars color={"#ffffff"} size="25px" />
             )}
           </div>
+          {open && (
+            <div
+              className={`absolute bg-white  top-10 right-5 z-10  text-center rounded-lg shadow-lg`}
+            >
+              <h3
+                className="text-slate-900 font-bold py-5 px-5"
+                onClick={() => {
+                  navigate("/libraryan");
+                  setOpen(!open);
+                }}
+              >
+                Dashboard
+              </h3>
+              <h3
+                className="text-slate-900 font-bold py-5 px-5  border-t-2"
+                onClick={() => {
+                  navigate("/libraryan/add-book");
+                  setOpen(!open);
+                }}
+              >
+                Add Book
+              </h3>
+              <h3
+                className=" text-slate-900 font-bold py-5 px-5 border-t-2"
+                onClick={() => {
+                  navigate("/libraryan/borrowed-books");
+                  setOpen(!open);
+                }}
+              >
+                Borrowed Books
+              </h3>
+            </div>
+          )}
         </div>
       </div>
       <Outlet />
