@@ -1,10 +1,10 @@
 import LibraryanSingleBook from "../components/LibraryanSingleBook";
-import { FaPlus } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { dataPlace } from "../Context";
+import LibBorrowedSingleBook from "../components/LibBorrowedSingleBook";
 
-function LibraryanPage() {
+function BorrowdeBooksLibraryan() {
   const navigate = useNavigate();
   // const booksData = [
 
@@ -92,7 +92,7 @@ function LibraryanPage() {
   // ];
 
   const { booksData, getData } = useContext(dataPlace);
-  const [search, setSearch] = useState("");
+  //   const [search, setSearch] = useState("");
 
   useEffect(() => {
     getData();
@@ -101,7 +101,7 @@ function LibraryanPage() {
     <>
       <div className="bg-slate-900 min-h-screen">
         <div className="container mx-auto pt-32 ">
-          <form
+          {/* <form
             className="pb-10 px-5"
             onSubmit={(event) => event.preventDefault()}
           >
@@ -112,34 +112,23 @@ function LibraryanPage() {
               value={search}
               onChange={(event) => setSearch(event.target.value)}
             />
-          </form>
-
+          </form> */}
           <h2 className="font-bold text-sky-500 text-center text-4xl mb-8">
-            Books currently available in Library
+            Books which are borrowed from Library
           </h2>
           <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-3 px-5 xl:grid-cols-3">
             {booksData
-              .filter((booksData) => booksData.borrowed === false)
-              .filter((bookData) =>
-                search.toLowerCase() === ""
-                  ? bookData
-                  : bookData.bookName
-                      .toLowerCase()
-                      .includes(search.toLowerCase())
-              )
+              .filter((booksData) => booksData.borrowed === true)
+              //   .filter((bookData) =>
+              //     search.toLowerCase() === ""
+              //       ? bookData
+              //       : bookData.bookName
+              //           .toLowerCase()
+              //           .includes(search.toLowerCase())
+              //   )
               .map((bookData) => (
-                <LibraryanSingleBook key={bookData.id} bookData={bookData} />
+                <LibBorrowedSingleBook key={bookData.id} bookData={bookData} />
               ))}
-
-            <div
-              className="border-2 border-sky-500 rounded-lg h-60 flex justify-center items-center cursor-pointer hover:bg-slate-800 transition-all"
-              onClick={() => navigate("/libraryan/add-book")}
-            >
-              <FaPlus color="white" size="32px" />
-              <span className="ml-2 text-white text-xl font-semibold">
-                Add a Book
-              </span>
-            </div>
           </div>
         </div>
       </div>
@@ -147,4 +136,4 @@ function LibraryanPage() {
   );
 }
 
-export default LibraryanPage;
+export default BorrowdeBooksLibraryan;

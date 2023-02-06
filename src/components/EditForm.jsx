@@ -12,7 +12,7 @@ function EditForm() {
 
   const formCheckYup = yup.object({
     bookName: yup.string().required("is required"),
-    bookCover: yup.string().required("URL is required"),
+    bookCover: yup.string().required("is required"),
     totalPages: yup
       .number()
       .min(1, "should be above 0")

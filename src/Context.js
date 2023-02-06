@@ -46,6 +46,48 @@ export function DataProvider({ children }) {
 
   //______________________________________________________________________________________
 
+  // ADD A BOOK_____________________________________________________________________________
+
+  const postData = async (value) => {
+    await fetch(`${API}/books`, {
+      method: "POST",
+      body: JSON.stringify(value),
+      headers: { "content-type": "application/json" },
+    });
+    navigate("/libraryan");
+  };
+
+  // _______________________________________________________________________________________
+
+  // BORROW A BOOK _________________________________________________________________________
+
+  const borrowBook = async (values, id) => {
+    const updatedValue = { ...values, borrowed: true };
+
+    await fetch(`${API}/books/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(updatedValue),
+      headers: { "content-type": "application/json" },
+    });
+    await getData();
+  };
+
+  // _______________________________________________________________________________________
+
+  // RETURN A BOOK _________________________________________________________________________
+  const returnBook = async (values, id) => {
+    const updatedValue = { ...values, borrowed: false };
+
+    await fetch(`${API}/books/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(updatedValue),
+      headers: { "content-type": "application/json" },
+    });
+    await getData();
+  };
+
+  // _______________________________________________________________________________________
+
   return (
     <dataPlace.Provider
       value={{
@@ -56,6 +98,9 @@ export function DataProvider({ children }) {
         getSingleData: getSingleData,
         putData: putData,
         deleteBook: deleteBook,
+        postData: postData,
+        borrowBook: borrowBook,
+        returnBook: returnBook,
       }}
     >
       {children}

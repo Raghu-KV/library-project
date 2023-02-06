@@ -1,10 +1,10 @@
-import LibraryanSingleBook from "../components/LibraryanSingleBook";
+import UserSingleBook from "../components/UserSingleBook";
 import { FaPlus } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { dataPlace } from "../Context";
 
-function LibraryanPage() {
+function UserPage() {
   const navigate = useNavigate();
   // const booksData = [
 
@@ -113,10 +113,6 @@ function LibraryanPage() {
               onChange={(event) => setSearch(event.target.value)}
             />
           </form>
-
-          <h2 className="font-bold text-sky-500 text-center text-4xl mb-8">
-            Books currently available in Library
-          </h2>
           <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-3 px-5 xl:grid-cols-3">
             {booksData
               .filter((booksData) => booksData.borrowed === false)
@@ -128,10 +124,10 @@ function LibraryanPage() {
                       .includes(search.toLowerCase())
               )
               .map((bookData) => (
-                <LibraryanSingleBook key={bookData.id} bookData={bookData} />
+                <UserSingleBook key={bookData.id} bookData={bookData} />
               ))}
 
-            <div
+            {/* <div
               className="border-2 border-sky-500 rounded-lg h-60 flex justify-center items-center cursor-pointer hover:bg-slate-800 transition-all"
               onClick={() => navigate("/libraryan/add-book")}
             >
@@ -139,7 +135,7 @@ function LibraryanPage() {
               <span className="ml-2 text-white text-xl font-semibold">
                 Add a Book
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -147,4 +143,4 @@ function LibraryanPage() {
   );
 }
 
-export default LibraryanPage;
+export default UserPage;

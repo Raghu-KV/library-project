@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom/dist";
 import { useEffect } from "react";
 
-function LibraryanNavBar() {
+function UserNavBar() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   // useEffect(() => {
@@ -15,16 +15,16 @@ function LibraryanNavBar() {
     <>
       <div className="bg-slate-900 h-20 border-b-2 border-slate-600 flex items-center fixed w-screen">
         <div className="container mx-auto flex items-center justify-between px-5 md:px-4 relative">
-          <h2 className="text-white text-3xl font-bold">Librayan</h2>
+          <h2 className="text-white text-3xl font-bold">User</h2>
           <ul className="hidden md:flex text-white gap-7 font-bold text-lg cursor-pointer">
             <li className="hover:scale-105 transition-all text-gray-300">
-              <Link to="/libraryan">Dashboard</Link>
+              <Link to="/user">Dashboard</Link>
             </li>
+            {/* <li className="hover:scale-105 transition-all text-gray-300">
+              <Link to="/user/add-book">Add Book</Link>
+            </li> */}
             <li className="hover:scale-105 transition-all text-gray-300">
-              <Link to="/libraryan/add-book">Add Book</Link>
-            </li>
-            <li className="hover:scale-105 transition-all text-gray-300">
-              <Link to="/libraryan/borrowed-books"> Borrowed Books</Link>
+              <Link to="/user/borrowed-books"> Borrowed Books</Link>
             </li>
             <li className="hover:scale-105 transition-all text-gray-300">
               <Link to="/"> Log Out </Link>
@@ -45,25 +45,25 @@ function LibraryanNavBar() {
               <h3
                 className="text-slate-900 font-bold py-5 px-5"
                 onClick={() => {
-                  navigate("/libraryan");
+                  navigate("/user");
                   setOpen(!open);
                 }}
               >
                 Dashboard
               </h3>
-              <h3
+              {/* <h3
                 className="text-slate-900 font-bold py-5 px-5  border-t-2"
                 onClick={() => {
-                  navigate("/libraryan/add-book");
+                  navigate("/user/add-book");
                   setOpen(!open);
                 }}
               >
                 Add Book
-              </h3>
+              </h3> */}
               <h3
                 className=" text-slate-900 font-bold py-5 px-5 border-t-2"
                 onClick={() => {
-                  navigate("/libraryan/borrowed-books");
+                  navigate("/user/borrowed-books");
                   setOpen(!open);
                 }}
               >
@@ -87,4 +87,4 @@ function LibraryanNavBar() {
   );
 }
 
-export default LibraryanNavBar;
+export default UserNavBar;

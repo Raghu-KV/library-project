@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { dataPlace } from "../Context";
 
-function LibraryanSingleBook({ bookData }) {
+function LibBorrowedSingleBook({ bookData }) {
   const navigate = useNavigate();
   const { deleteBook } = useContext(dataPlace);
 
@@ -21,24 +21,9 @@ function LibraryanSingleBook({ bookData }) {
         </h2>
         <p className="text-slate-300 ">Author : {bookData.author}</p>
         <p className="text-slate-300 "> No.Pages : {bookData.totalPages}</p>
-
-        <div className="mt-2 md:mt-5 flex gap-3">
-          <button
-            className="text-sm bg-sky-800 px-3 font-bold text-sky-200 rounded-full hover:bg-sky-700 transition-all"
-            onClick={() => navigate(`/libraryan/edit-book/${bookData.id}`)}
-          >
-            EDIT
-          </button>
-          <button
-            className="text-sm bg-red-800 px-3 font-bold text-red-200 rounded-full hover:bg-red-700 transition-all"
-            onClick={() => deleteBook(bookData.id)}
-          >
-            DELETE
-          </button>
-        </div>
       </div>
     </div>
   );
 }
 
-export default LibraryanSingleBook;
+export default LibBorrowedSingleBook;
