@@ -2,18 +2,32 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom/dist";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 function LibraryanNavBar() {
   const [open, setOpen] = useState(false);
+  const navRef = useRef();
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   console.log("rendered");
-  // }, []);
+
+  useEffect(() => {
+    const handler = (event) => {
+      if (!navRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  }, []);
 
   return (
     <>
-      <div className="bg-slate-900 h-20 border-b-2 border-slate-600 flex items-center fixed w-screen">
+      <div
+        className="bg-slate-900 h-20 border-b-2 border-slate-600 flex items-center fixed w-screen"
+        ref={navRef}
+      >
         <div className="container mx-auto flex items-center justify-between px-5 md:px-4 relative">
           <h2 className="text-white text-3xl font-bold">Librayan</h2>
           <ul className="hidden md:flex text-white gap-7 font-bold text-lg cursor-pointer">
