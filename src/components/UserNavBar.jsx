@@ -23,10 +23,7 @@ function UserNavBar() {
 
   return (
     <>
-      <div
-        className="bg-slate-900 h-20 border-b-2 border-slate-600 flex items-center fixed w-screen"
-        ref={navRef}
-      >
+      <div className="bg-slate-900 h-20 border-b-2 border-slate-600 flex items-center fixed w-screen">
         <div className="container mx-auto flex items-center justify-between px-5 md:px-4 relative">
           <h2 className="text-white text-3xl font-bold">User</h2>
           <ul className="hidden md:flex text-white gap-7 font-bold text-lg cursor-pointer">
@@ -44,27 +41,29 @@ function UserNavBar() {
             </li>
           </ul>
 
-          <div onClick={() => setOpen(!open)} className="md:hidden">
-            {open ? (
-              <FaTimes color={"#ffffff"} size="25px" />
-            ) : (
-              <FaBars color={"#ffffff"} size="25px" />
-            )}
-          </div>
-          {open && (
-            <div
-              className={`absolute bg-white  top-10 right-5 z-10  text-center rounded-lg shadow-lg`}
-            >
-              <h3
-                className="text-slate-900 font-bold py-5 px-5"
-                onClick={() => {
-                  navigate("/user");
-                  setOpen(!open);
-                }}
-              >
-                Dashboard
-              </h3>
-              {/* <h3
+          <div className="md:hidden">
+            <div onClick={() => setOpen(!open)} className="md:hidden">
+              {open ? (
+                <FaTimes color={"#ffffff"} size="25px" />
+              ) : (
+                <FaBars color={"#ffffff"} size="25px" />
+              )}
+            </div>
+            <div ref={navRef}>
+              {open && (
+                <div
+                  className={`absolute bg-white  top-10 right-5 z-10  text-center rounded-lg shadow-lg`}
+                >
+                  <h3
+                    className="text-slate-900 font-bold py-5 px-5"
+                    onClick={() => {
+                      navigate("/user");
+                      setOpen(!open);
+                    }}
+                  >
+                    Dashboard
+                  </h3>
+                  {/* <h3
                 className="text-slate-900 font-bold py-5 px-5  border-t-2"
                 onClick={() => {
                   navigate("/user/add-book");
@@ -73,26 +72,28 @@ function UserNavBar() {
               >
                 Add Book
               </h3> */}
-              <h3
-                className=" text-slate-900 font-bold py-5 px-5 border-t-2"
-                onClick={() => {
-                  navigate("/user/borrowed-books");
-                  setOpen(!open);
-                }}
-              >
-                Borrowed Books
-              </h3>
-              <h3
-                className=" text-slate-900 font-bold py-5 px-5 border-t-2"
-                onClick={() => {
-                  navigate("/");
-                  setOpen(!open);
-                }}
-              >
-                Log Out
-              </h3>
+                  <h3
+                    className=" text-slate-900 font-bold py-5 px-5 border-t-2"
+                    onClick={() => {
+                      navigate("/user/borrowed-books");
+                      setOpen(!open);
+                    }}
+                  >
+                    Borrowed Books
+                  </h3>
+                  <h3
+                    className=" text-slate-900 font-bold py-5 px-5 border-t-2"
+                    onClick={() => {
+                      navigate("/");
+                      setOpen(!open);
+                    }}
+                  >
+                    Log Out
+                  </h3>
+                </div>
+              )}
             </div>
-          )}
+          </div>
         </div>
       </div>
       <Outlet />
