@@ -25,7 +25,8 @@ function AddBook() {
     },
     validationSchema: formCheckYup,
     onSubmit: (values) => {
-      postData(values);
+      const submittedValues = { ...values, borrowed: false };
+      postData(submittedValues);
     },
   });
 
